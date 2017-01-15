@@ -1,1 +1,458 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 20
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/London
 
+# Enables the frontend
+frontend:
+
+#Extra iFrames in the frontend
+panel_iframe:
+  router:
+    title: 'Router'
+    icon: mdi:access-point-network
+    url: 'http://192.168.0.1'
+
+http:
+  # Uncomment this to add a password (recommended!)
+  # api_password: PASSWORD
+  # Uncomment this if you are using SSL or running in Docker etc
+  # base_url: example.duckdns.org:8123
+
+# Checks for available updates
+updater:
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time.
+history:
+
+# View all events in a logbook
+logbook:
+
+# Track the sun
+sun:
+
+# Text to speech
+tts:
+  platform: google
+
+#Sensors
+sensor:
+#Weather from Darksky
+  - platform: darksky
+    api_key: !secret darksky_api
+    monitored_conditions:
+      - summary
+      - precip_type
+      - precip_intensity
+      - precip_probability
+      - temperature
+      - apparent_temperature
+      - wind_speed
+      - wind_bearing
+      - cloud_cover
+      - hourly_summary
+      - daily_summary
+
+  - platform: template
+    sensors:
+      alarm_time:
+        friendly_name: 'Alarm time'
+        value_template: '{{ "%0.02d:%0.02d" | format(states("input_slider.alarmhours") | int, states("input_slider.alarmminutes") | int) }}'
+      weather_summary:
+        friendly_name: 'Weather Summary'
+        value_template: '{{ states("sensor.dark_sky_daily_summary") }} It will be {{ states("sensor.dark_sky_hourly_summary") }} It is currently {{ states("sensor.dark_sky_summary") }} and is {{ states("sensor.dark_sky_temperature") }}°C, but feels like {{ states("sensor.dark_sky_apparent_temperature") }}°C. There is a {{ states("sensor.dark_sky_precip_probability") }}% chance of rain.'
+      bedroom_light_scene:
+        friendly_name: 'Current Light Scene'
+        value_template: '{{states("input_select.bedroom_scene") }}'
+      bedroom_light_automation_schedule:
+        friendly_name: 'Automation Schedule'
+        value_template: >-
+            {%- if is_state("group.bedroom_lights", "off") %}
+                Off
+            {%  elif is_state("input_boolean.bedroom_light_automation", "off") %}
+                Manual
+            {%  elif is_state("input_boolean.bedroom_light_automation", "on") %}
+               +0700 to 1600 - Daylight
+               +1600 to 2000 - Afternoon
+               +2000 to 2330 - Evening        
+               +2300 to 0700 - Night
+            {% else %}
+                Unknown
+            {%- endif %}
+
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+      - 'date_time'
+      - 'time_date'
+
+#NMAP device tracking on the local network
+device_tracker:
+  - platform: nmap_tracker
+    hosts: 192.168.0.1/24
+
+notify:
+  - name: Adrian
+    platform: pushbullet
+    api_key: !secret pushbullet_api
+
+input_slider:
+  alarmhours:
+    name: Hour
+    icon: mdi:timer
+    initial: 7
+    min: 0
+    max: 23
+    step: 1
+  alarmminutes:
+    name: Minutes
+    icon: mdi:timer
+    initial: 15
+    min: 0
+    max: 55
+    step: 5
+
+input_boolean:
+  adrian_home:
+    name: Adrian Home
+    initial: on
+    icon: mdi:cellphone
+  sophie_home:
+    name: Sophie Home
+    initial: on
+    icon: mdi:cellphone-iphone
+  bedroom_light_automation:
+    name: Automation toggle
+    initial: on
+    icon: mdi:brightness-auto
+  bedroom_sunrise_alarm:
+    name: Bedroom sunrise alarm
+    initial: on
+
+input_select:
+  bedroom_manual_scene:
+    name: Manual Light Scene
+    options:
+      - Daylight
+      - Afternoon
+      - Evening
+      - Night
+      - Blue
+      - Select a scene
+    initial: Select a scene
+  bedroom_scene:
+    name: Bedroom Light Scene
+    options:
+      - Daylight
+      - Afternoon
+      - Evening
+      - Night
+      - Blue
+      - Off
+
+  time_of_day:
+    name: Time of day
+    options:
+      - Daylight
+      - Afternoon
+      - Evening
+      - Night
+
+#Groups
+group:
+  people:
+    name: People
+    icon: mdi:account-multiple
+    entities:
+      - device_tracker.044bed8cb998
+      - device_tracker.d087e22b8a78
+
+  default_view:
+    view: yes
+    entities:
+      - group.people
+      - group.climate
+
+#LIVING ROOM VIEW
+  living_room:
+    name: Living Room
+    view: yes
+    entities:
+      - media_player.living_room
+
+#BEDROOM VIEW
+  bedroom:
+    name: Bedroom  
+    view: yes
+    entities:
+      - group.bedroom_light_control
+      - group.bedroom_lights
+      - group.bedroom_alarm
+  bedroom_lights:
+    name: Bedroom Lights
+    entities:
+      - light.bedroom_light_1
+      - light.bedroom_light_2
+  bedroom_light_control:
+    name: Light Control
+    entities:
+      - input_boolean.bedroom_light_automation
+      - input_select.bedroom_manual_scene
+      - sensor.bedroom_light_scene
+  bedroom_alarm:
+    name: Sunrise Alarm
+    entities:
+      - input_boolean.bedroom_sunrise_alarm
+      - sensor.alarm_time
+      - input_slider.alarmhours
+      - input_slider.alarmminutes 
+
+#SPARE ROOM VIEW
+  spare_room:
+    name: Spare Room
+    view: yes
+    entities:
+      - media_player.spare_room
+
+  climate:
+    name: Climate
+    entities:
+      - sun.sun
+      - sensor.dark_sky_temperature
+      - sensor.dark_sky_apparent_temperature
+      - sensor.dark_sky_precip_probability
+      - sensor.dark_sky_wind_speed
+
+light:
+  - platform: yeelight
+    transistion: 2000
+    devices:
+      192.168.0.50:
+        name: Bedroom light 1
+      192.168.0.51:
+        name: Bedroom light 2
+
+scene:
+#BEDROOM LIGHT SCENES
+#Normal - 40W tungsten bulb equivalent
+  - name: bedroom_on
+    entities:
+      light.bedroom_light_1:
+        state: on
+        rgb_color: [ 255,197,143 ]
+        brightness: 221
+        transition: 2000
+      light.bedroom_light_2:
+        state: on
+        rgb_color: [ 255,197,143 ]
+        brightness: 221
+        transition: 2000
+      input_select.bedroom_scene:
+        option: Daylight
+#Afternoon - 2000K
+  - name: bedroom_afternoon
+    entities:
+      light.bedroom_light_1:
+        state: on
+        rgb_color: [ 255,155,61 ]
+        brightness: 204
+        transition: 2000
+      light.bedroom_light_2:
+        state: on
+        rgb_color: [ 255,155,61 ]
+        brightness: 204
+        transition: 2000
+      input_select.bedroom_scene:
+        option: Afternoon
+#Evening - 1800K
+  - name: bedroom_evening
+    entities:
+      light.bedroom_light_1:
+        state: on
+        rgb_color: [ 255,127,0 ]
+        brightness: 204
+        transition: 2000
+      light.bedroom_light_2:
+        state: on
+        rgb_color: [ 255,127,0 ]
+        brightness: 204
+        transition: 2000
+      input_select.bedroom_scene:
+        option: Evening
+#Night light
+  - name: bedroom_night
+    entities:
+      light.bedroom_light_1:
+        state: on
+        rgb_color: [ 255,83,0 ]
+        brightness: 2
+        transition: 2000
+      light.bedroom_light_2:
+        state: on
+        rgb_color: [ 255,83,0 ]
+        brightness: 2
+        transition: 2000
+      input_select.bedroom_scene:
+        option: Night
+#Low blue light
+  - name: bedroom_blue
+    entities:
+      light.bedroom_light_1:
+        state: on
+        rgb_color: [ 20,20,50 ]
+        brightness: 127
+        transition: 2000
+      light.bedroom_light_2:
+        state: on
+        rgb_color: [ 20,20,50 ]
+        brightness: 127
+        transition: 2000
+      input_select.bedroom_scene:
+        option: Blue
+
+automation:
+#SET TIME OF DAY VARIABLE
+#Every 1 minute check what time it is and set the variable
+  - alias: Set time_of_day to Daylight
+    trigger:
+      platform: time
+      seconds: '/59'
+    condition:
+      condition: time
+      after: '07:00:01'
+      before: '16:00:00'
+    action:
+      service: input_select.select_option
+      data:
+        entity_id: input_select.time_of_day
+        option: Daylight
+  - alias: Set time_of_day to Afternoon 
+    trigger:
+      platform: time
+      seconds: '/59'
+    condition:
+      condition: time
+      after: '16:00:01'
+      before: '20:00:00'
+    action:
+      service: input_select.select_option
+      data:
+        entity_id: input_select.time_of_day         
+        option: Afternoon
+  - alias: Set time_of_day to Evening 
+    trigger:
+      platform: time
+      seconds: '/59'
+    condition:
+      condition: time
+      after: '20:00:01'
+      before: '23:30:00'
+    action:
+      service: input_select.select_option
+      data:
+        entity_id: input_select.time_of_day         
+        option: Evening
+  - alias: Set time_of_day to Night 
+    trigger:
+      platform: time
+      seconds: '/59'
+    condition:
+      condition: time
+      after: '23:30:01'
+      before: '07:00:00'
+    action:
+      service: input_select.select_option
+      data:
+        entity_id: input_select.time_of_day         
+        option: Night
+
+automation 2:
+#BEDROOM LIGHT AUTOMATION
+
+#Uses a drop down box to manually set the light scene and turn off automation
+  - alias: Manual override control for bedroom lights with drop-down box
+    trigger:
+      platform: state
+      entity_id: input_select.bedroom_manual_scene
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.bedroom_light_automation
+      - service: scene.turn_on
+        data_template:      
+          entity_id: >
+            {% if is_state("input_select.bedroom_manual_scene", "Daylight") %}
+              scene.bedroom_on
+            {%-elif is_state("input_select.bedroom_manual_scene", "Afternoon") %}
+              scene.bedroom_afternoon
+            {%-elif is_state("input_select.bedroom_manual_scene", "Evening") %}
+              scene.bedroom_evening
+            {%-elif is_state("input_select.bedroom_manual_scene", "Night") %}
+              scene.bedroom_night
+            {%-elif is_state("input_select.bedroom_manual_scene", "Blue") %}
+              scene.bedroom_blue
+            {% else %}
+              none
+            {% endif %}
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.bedroom_manual_scene
+          option: Select a scene
+
+#Every 1 second checks if automation is on and if the lights are on. If they are it sets the light scene to something suitable for the time of day
+  - alias: Automatic bedroom light control
+    trigger:
+      platform: time
+      seconds: '/1'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: 'input_boolean.bedroom_light_automation'
+          state: 'on'
+        - condition: state
+          entity_id: 'light.bedroom_light_1'
+          state: 'on'
+        - condition: state        
+          entity_id: 'light.bedroom_light_2'
+          state: 'on'
+    action:
+      - service: scene.turn_on
+        data_template:
+          entity_id: >
+            {% if is_state("input_select.time_of_day", "Daylight") %}
+              scene.bedroom_on
+            {%-elif is_state("input_select.time_of_day", "Afternoon") %}
+              scene.bedroom_afternoon
+            {%-elif is_state("input_select.time_of_day", "Evening") %}
+              scene.bedroom_evening
+            {%-elif is_state("input_select.time_of_day", "Night") %}
+              scene.bedroom_night
+            {% else %}
+              none
+            {% endif %}
+
+  - alias: when the lights are off set the variable to off
+    trigger:
+      platform: state
+      entity_id: group.bedroom_lights
+      state: 'off'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.bedroom_scene
+          option: Off
