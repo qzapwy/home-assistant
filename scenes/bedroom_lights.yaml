@@ -1,17 +1,17 @@
 #BEDROOM LIGHT SCENES
-#Normal - 40W tungsten bulb equivalent
+#Normal
 - name: bedroom_on
   entities:
     light.bedroom_light_1:
       state: on
       rgb_color: [ 255,197,143 ] 
       brightness: 221
-      transition: 2000
+      transition: 3000
     light.bedroom_light_2:
       state: on
       rgb_color: [ 255,197,143 ]
       brightness: 221
-      transition: 2000
+      transition: 3000
     input_select.bedroom_scene:
       option: Daylight
 #Afternoon
@@ -19,14 +19,14 @@
   entities:
     light.bedroom_light_1:
       state: on
-      rgb_color: [ 255,187,132 ]
+      rgb_color: [ 255,147,44 ]
       brightness: 204
-      transition: 2000
+      transition: 3000
     light.bedroom_light_2:
       state: on
-      rgb_color: [ 255,187,132 ]
+      rgb_color: [ 255,147,44 ]
       brightness: 204
-      transition: 2000
+      transition: 3000
     input_select.bedroom_scene:
       option: Afternoon
 #Evening
@@ -34,14 +34,14 @@
   entities:
     light.bedroom_light_1:
       state: on
-      rgb_color: [ 255,102,5 ]
+      rgb_color: [ 255,126,0 ]
       brightness: 204
-      transition: 2000
+      transition: 3000
     light.bedroom_light_2:
       state: on
-      rgb_color: [ 255,102,5 ]
+      rgb_color: [ 255,126,0 ]
       brightness: 204
-      transition: 2000
+      transition: 3000
     input_select.bedroom_scene:
       option: Evening
 #Night light
@@ -49,14 +49,14 @@
   entities:
     light.bedroom_light_1:
       state: on
-      rgb_color: [ 255,74,0 ]
+      rgb_color: [ 255,83,0 ]
       brightness: 2
-      transition: 2000
+      transition: 3000
     light.bedroom_light_2:
       state: on
-      rgb_color: [ 255,74,0 ]
+      rgb_color: [ 255,83,0 ]
       brightness: 2
-      transition: 2000
+      transition: 3000
     input_select.bedroom_scene:
       option: Night
 #Low blue light
@@ -66,11 +66,11 @@
       state: on
       rgb_color: [ 20,20,50 ]
       brightness: 127
-      transition: 2000
+      transition: 3000
     light.bedroom_light_2:
       state: on
       rgb_color: [ 20,20,50 ]
       brightness: 127
-      transition: 2000
+      transition: 3000
     input_select.bedroom_scene:
       option: Blue
