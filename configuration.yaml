@@ -41,7 +41,7 @@ device_tracker:
 #Support for Yeelight lights. Assign the lights a fixed IP address with the router first.
 light:
   - platform: yeelight
-    transistion: 2000
+    transistion: 3000
     devices:
       192.168.0.50:
         name: Bedroom light 1
