@@ -67,6 +67,13 @@ sensor:
       - hourly_summary
       - daily_summary
 
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+      - 'date_time'
+      - 'time_date'
+
   - platform: template
     sensors:
       alarm_time:
@@ -93,13 +100,6 @@ sensor:
             {% else %}
                 Unknown
             {%- endif %}
-
-  - platform: time_date
-    display_options:
-      - 'time'
-      - 'date'
-      - 'date_time'
-      - 'time_date'
 
 #NMAP device tracking on the local network
 device_tracker:
@@ -184,6 +184,6 @@ light:
 
 group: !include group.yaml
 
-scene: !include_dir_list scenes
+scene: !include__dir_merge_list scenes/
 
-automation: !include_dir_list automation
+automation: !include_dir_merge_list automation/
