@@ -184,6 +184,6 @@ light:
 
 group: !include group.yaml
 
-scene: !include__dir_merge_list scenes/
+scene: !include_dir_merge_list scenes/
 
 automation: !include_dir_merge_list automation/
