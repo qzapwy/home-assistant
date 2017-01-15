@@ -147,4 +147,5 @@ input_select:
       - Night
       - Blue
       - Off
+    initial: Off
 
