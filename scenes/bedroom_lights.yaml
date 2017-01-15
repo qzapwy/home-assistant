@@ -19,12 +19,12 @@
   entities:
     light.bedroom_light_1:
       state: on
-      rgb_color: [ 255,147,44 ]
+      rgb_color: [ 255,157,63 ]
       brightness: 204
       transition: 3000
     light.bedroom_light_2:
       state: on
-      rgb_color: [ 255,147,44 ]
+      rgb_color: [ 255,157,63 ]
       brightness: 204
       transition: 3000
     input_select.bedroom_scene:
