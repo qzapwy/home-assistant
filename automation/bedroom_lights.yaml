@@ -13,7 +13,8 @@
         option: Off
 
 #Every 1 second checks if the automation switch is on and if the lights are on.
-#If they are it sets the light scene to something suitable based on the time of day variable
+#If they are check if the lights are already what they need to be
+#If they aren't it sets the light scene to something suitable based on the time of day variable
 - alias: Automatic bedroom light control
   trigger:
     platform: time
@@ -27,6 +28,8 @@
       - condition: state
         entity_id: 'group.bedroom_lights'
         state: 'on'
+        condition: template
+        value_template: '{{ states.input_select.time_of_day != state.input_select.bedroom_scene }}'
   action:
     - service: scene.turn_on
       data_template:
