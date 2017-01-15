@@ -17,7 +17,7 @@
 #Afternoon - 2000K
 - name: bedroom_afternoon
   entities:
-  light.bedroom_light_1:
+    light.bedroom_light_1:
       state: on
       rgb_color: [ 255,155,61 ]
       brightness: 204
