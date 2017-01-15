@@ -4,7 +4,7 @@
   entities:
     light.bedroom_light_1:
       state: on
-      rgb_color: [ 255,197,143  
+      rgb_color: [ 255,197,143 ] 
       brightness: 221
       transition: 2000
     light.bedroom_light_2:
