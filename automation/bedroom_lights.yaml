@@ -1,76 +1,73 @@
 #BEDROOM LIGHT AUTOMATION
 
-#Every 1 second checks if the automation switch is on and if the lights are on. If they are it sets the light scene to something suitable for the time of day
-  - alias: Automatic bedroom light control
-    trigger:
-      platform: time
-      seconds: '/1'
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: 'input_boolean.bedroom_light_automation'
-          state: 'on'
-        - condition: state
-          entity_id: 'light.bedroom_light_1'
-          state: 'on'
-        - condition: state        
-          entity_id: 'light.bedroom_light_2'
-          state: 'on'
-    action:
-      - service: scene.turn_on
-        data_template:
-          entity_id: >
-            {% if is_state("input_select.time_of_day", "Daylight") %}
-              scene.bedroom_on
-            {%-elif is_state("input_select.time_of_day", "Afternoon") %}
-              scene.bedroom_afternoon
-            {%-elif is_state("input_select.time_of_day", "Evening") %}
-              scene.bedroom_evening
-            {%-elif is_state("input_select.time_of_day", "Night") %}
-              scene.bedroom_night
-            {% else %}
-              none
-            {% endif %}
-
-#Uses a drop down box to manually set the light scene and turn off automation
-  - alias: Manual override control for bedroom lights with drop-down box
-    trigger:
-      platform: state
-      entity_id: input_select.bedroom_manual_scene
-    action:
-      - service: input_boolean.turn_off
-        entity_id: input_boolean.bedroom_light_automation
-      - service: scene.turn_on
-        data_template:      
-          entity_id: >
-            {% if is_state("input_select.bedroom_manual_scene", "Daylight") %}
-              scene.bedroom_on
-            {%-elif is_state("input_select.bedroom_manual_scene", "Afternoon") %}
-              scene.bedroom_afternoon
-            {%-elif is_state("input_select.bedroom_manual_scene", "Evening") %}
-              scene.bedroom_evening
-            {%-elif is_state("input_select.bedroom_manual_scene", "Night") %}
-              scene.bedroom_night
-            {%-elif is_state("input_select.bedroom_manual_scene", "Blue") %}
-              scene.bedroom_blue
-            {% else %}
-              none
-            {% endif %}
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.bedroom_manual_scene
-          option: Select a scene
-
-
-
+#When the lights are off turn all the variables to off
 - alias: when the lights are off set the variable to off
-    trigger:
-      platform: state
-      entity_id: group.bedroom_lights
-      state: 'off'
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.bedroom_scene
-          option: Off
+  trigger:
+    platform: state
+    entity_id: group.bedroom_lights
+    state: 'off'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.bedroom_scene
+        option: Off
+
+#Every 1 second checks if the automation switch is on and if the lights are on.
+#If they are it sets the light scene to something suitable based on the time of day variable
+- alias: Automatic bedroom light control
+  trigger:
+    platform: time
+    seconds: '/1'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: 'input_boolean.bedroom_light_automation'
+        state: 'on'
+      - condition: state
+        entity_id: 'group.bedroom_lights'
+        state: 'on'
+  action:
+    - service: scene.turn_on
+      data_template:
+        entity_id: >
+          {% if is_state("input_select.time_of_day", "Daylight") %}
+            scene.bedroom_on
+          {%-elif is_state("input_select.time_of_day", "Afternoon") %}
+            scene.bedroom_afternoon
+          {%-elif is_state("input_select.time_of_day", "Evening") %}
+            scene.bedroom_evening
+          {%-elif is_state("input_select.time_of_day", "Night") %}
+            scene.bedroom_night
+          {% else %}
+            none
+          {% endif %}
+
+#If the user wants to they can use a drop down box in the front end to manually set the light scene and turn off automation
+- alias: Manual override control for bedroom lights
+  trigger:
+    platform: state
+    entity_id: input_select.bedroom_manual_scene
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.bedroom_light_automation
+    - service: scene.turn_on
+      data_template:      
+        entity_id: >
+          {% if is_state("input_select.bedroom_manual_scene", "Daylight") %}
+            scene.bedroom_on
+          {%-elif is_state("input_select.bedroom_manual_scene", "Afternoon") %}
+            scene.bedroom_afternoon
+          {%-elif is_state("input_select.bedroom_manual_scene", "Evening") %}
+            scene.bedroom_evening
+          {%-elif is_state("input_select.bedroom_manual_scene", "Night") %}
+            scene.bedroom_night
+          {%-elif is_state("input_select.bedroom_manual_scene", "Blue") %}
+            scene.bedroom_blue
+          {% else %}
+            none
+          {% endif %}
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.bedroom_manual_scene
+        option: Select a scene
