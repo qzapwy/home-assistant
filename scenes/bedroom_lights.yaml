@@ -19,12 +19,12 @@
   entities:
     light.bedroom_light_1:
       state: on
-      rgb_color: [ 255,102,0 ]
+      rgb_color: [ 255,187,132 ]
       brightness: 204
       transition: 2000
     light.bedroom_light_2:
       state: on
-      rgb_color: [ 255,102,0 ]
+      rgb_color: [ 255,187,132 ]
       brightness: 204
       transition: 2000
     input_select.bedroom_scene:
@@ -34,13 +34,13 @@
   entities:
     light.bedroom_light_1:
       state: on
-      rgb_color: [ 255,102,0 ]
-      brightness: 160
+      rgb_color: [ 255,102,5 ]
+      brightness: 204
       transition: 2000
     light.bedroom_light_2:
       state: on
-      rgb_color: [ 255,102,0 ]
-      brightness: 160
+      rgb_color: [ 255,102,5 ]
+      brightness: 204
       transition: 2000
     input_select.bedroom_scene:
       option: Evening
@@ -49,12 +49,12 @@
   entities:
     light.bedroom_light_1:
       state: on
-      rgb_color: [ 255,83,0 ]
+      rgb_color: [ 255,74,0 ]
       brightness: 2
       transition: 2000
     light.bedroom_light_2:
       state: on
-      rgb_color: [ 255,83,0 ]
+      rgb_color: [ 255,74,0 ]
       brightness: 2
       transition: 2000
     input_select.bedroom_scene:
