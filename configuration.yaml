@@ -1,55 +1,57 @@
 homeassistant:
-  # Name of the location where Home Assistant is running
   name: Home
-  # Location required to calculate the time the sun rises and sets
   latitude: !secret home_latitude
   longitude: !secret home_longitude
-  # Impacts weather/sunrise data (altitude above sea level in meters)
   elevation: 20
-  # metric for Metric, imperial for Imperial
   unit_system: metric
-  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: Europe/London
 
-# Enables the frontend
+updater:
+
+discovery:
+
+conversation:
+
+history:
+
+logbook:
+
+sun:
+
+tts:
+  platform: google
+
 frontend:
 
-#Extra iFrames in the frontend
+#Frontend layout
+group: !include group.yaml
+
+#Extra iFrame tab in the Frontend for router settings
 panel_iframe:
   router:
     title: 'Router'
     icon: mdi:access-point-network
     url: 'http://192.168.0.1'
 
-http:
-  # Uncomment this to add a password (recommended!)
-  # api_password: PASSWORD
-  # Uncomment this if you are using SSL or running in Docker etc
-  # base_url: example.duckdns.org:8123
+#NMAP device tracking on the local network
+device_tracker:
+  - platform: nmap_tracker
+    hosts: 192.168.0.1/24
 
-# Checks for available updates
-updater:
+#Support for Yeelight lights. Assign the lights a fixed IP address with the router first.
+light:
+  - platform: yeelight
+    transistion: 2000
+    devices:
+      192.168.0.50:
+        name: Bedroom light 1
+      192.168.0.51:
+        name: Bedroom light 2
 
-# Discover some devices automatically
-discovery:
+scene: !include_dir_merge_list scenes/
 
-# Allows you to issue voice commands from the frontend in enabled browsers
-conversation:
+automation: !include_dir_merge_list automation/
 
-# Enables support for tracking state changes over time.
-history:
-
-# View all events in a logbook
-logbook:
-
-# Track the sun
-sun:
-
-# Text to speech
-tts:
-  platform: google
-
-#Sensors
 sensor:
 #Weather from Darksky
   - platform: darksky
@@ -66,13 +68,11 @@ sensor:
       - cloud_cover
       - hourly_summary
       - daily_summary
-
+#Time and date variables
   - platform: time_date
     display_options:
       - 'time'
       - 'date'
-      - 'date_time'
-      - 'time_date'
 
   - platform: template
     sensors:
@@ -85,33 +85,10 @@ sensor:
       bedroom_light_scene:
         friendly_name: 'Current Light Scene'
         value_template: '{{states("input_select.bedroom_scene") }}'
-      bedroom_light_automation_schedule:
-        friendly_name: 'Automation Schedule'
-        value_template: >-
-            {%- if is_state("group.bedroom_lights", "off") %}
-                Off
-            {%  elif is_state("input_boolean.bedroom_light_automation", "off") %}
-                Manual
-            {%  elif is_state("input_boolean.bedroom_light_automation", "on") %}
-               +0700 to 1600 - Daylight
-               +1600 to 2000 - Afternoon
-               +2000 to 2330 - Evening        
-               +2300 to 0700 - Night
-            {% else %}
-                Unknown
-            {%- endif %}
-
-#NMAP device tracking on the local network
-device_tracker:
-  - platform: nmap_tracker
-    hosts: 192.168.0.1/24
-
-notify:
-  - name: Adrian
-    platform: pushbullet
-    api_key: !secret pushbullet_api
 
 input_slider:
+
+#Sunrise alarm clock variables
   alarmhours:
     name: Hour
     icon: mdi:timer
@@ -127,15 +104,10 @@ input_slider:
     max: 55
     step: 5
 
+
 input_boolean:
-  adrian_home:
-    name: Adrian Home
-    initial: on
-    icon: mdi:cellphone
-  sophie_home:
-    name: Sophie Home
-    initial: on
-    icon: mdi:cellphone-iphone
+
+#Bedroom light automation variables
   bedroom_light_automation:
     name: Automation toggle
     initial: on
@@ -144,7 +116,18 @@ input_boolean:
     name: Bedroom sunrise alarm
     initial: on
 
+
 input_select:
+
+  time_of_day:
+    name: Time of day
+    options:
+      - Daylight
+      - Afternoon
+      - Evening
+      - Night
+      
+#Bedroom light automation variables
   bedroom_manual_scene:
     name: Manual Light Scene
     options:
@@ -165,25 +148,3 @@ input_select:
       - Blue
       - Off
 
-  time_of_day:
-    name: Time of day
-    options:
-      - Daylight
-      - Afternoon
-      - Evening
-      - Night
-
-light:
-  - platform: yeelight
-    transistion: 2000
-    devices:
-      192.168.0.50:
-        name: Bedroom light 1
-      192.168.0.51:
-        name: Bedroom light 2
-
-group: !include group.yaml
-
-scene: !include_dir_merge_list scenes/
-
-automation: !include_dir_merge_list automation/
