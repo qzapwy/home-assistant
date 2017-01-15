@@ -1,0 +1,76 @@
+#BEDROOM LIGHT SCENES
+#Normal - 40W tungsten bulb equivalent
+- name: bedroom_on
+  entities:
+    light.bedroom_light_1:
+      state: on
+      rgb_color: [ 255,197,143  
+      brightness: 221
+      transition: 2000
+    light.bedroom_light_2:
+      state: on
+      rgb_color: [ 255,197,143 ]
+      brightness: 221
+      transition: 2000
+    input_select.bedroom_scene:
+      option: Daylight
+#Afternoon - 2000K
+- name: bedroom_afternoon
+  entities:
+  light.bedroom_light_1:
+      state: on
+      rgb_color: [ 255,155,61 ]
+      brightness: 204
+      transition: 2000
+    light.bedroom_light_2:
+      state: on
+      rgb_color: [ 255,155,61 ]
+      brightness: 204
+      transition: 2000
+    input_select.bedroom_scene:
+      option: Afternoon
+#Evening - 1800K
+- name: bedroom_evening
+  entities:
+    light.bedroom_light_1:
+      state: on
+      rgb_color: [ 255,127,0 ]
+      brightness: 204
+      transition: 2000
+    light.bedroom_light_2:
+      state: on
+      rgb_color: [ 255,127,0 ]
+      brightness: 204
+      transition: 2000
+    input_select.bedroom_scene:
+      option: Evening
+#Night light
+- name: bedroom_night
+  entities:
+    light.bedroom_light_1:
+      state: on
+      rgb_color: [ 255,83,0 ]
+      brightness: 2
+      transition: 2000
+    light.bedroom_light_2:
+      state: on
+      rgb_color: [ 255,83,0 ]
+      brightness: 2
+      transition: 2000
+    input_select.bedroom_scene:
+      option: Night
+#Low blue light
+- name: bedroom_blue
+  entities:
+    light.bedroom_light_1:
+      state: on
+      rgb_color: [ 20,20,50 ]
+      brightness: 127
+      transition: 2000
+    light.bedroom_light_2:
+      state: on
+      rgb_color: [ 20,20,50 ]
+      brightness: 127
+      transition: 2000
+    input_select.bedroom_scene:
+      option: Blue
