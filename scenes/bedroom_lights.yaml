@@ -14,33 +14,33 @@
       transition: 2000
     input_select.bedroom_scene:
       option: Daylight
-#Afternoon - 2000K
+#Afternoon
 - name: bedroom_afternoon
   entities:
     light.bedroom_light_1:
       state: on
-      rgb_color: [ 255,155,61 ]
+      rgb_color: [ 255,102,0 ]
       brightness: 204
       transition: 2000
     light.bedroom_light_2:
       state: on
-      rgb_color: [ 255,155,61 ]
+      rgb_color: [ 255,102,0 ]
       brightness: 204
       transition: 2000
     input_select.bedroom_scene:
       option: Afternoon
-#Evening - 1800K
+#Evening
 - name: bedroom_evening
   entities:
     light.bedroom_light_1:
       state: on
-      rgb_color: [ 255,127,0 ]
-      brightness: 204
+      rgb_color: [ 255,102,0 ]
+      brightness: 160
       transition: 2000
     light.bedroom_light_2:
       state: on
-      rgb_color: [ 255,127,0 ]
-      brightness: 204
+      rgb_color: [ 255,102,0 ]
+      brightness: 160
       transition: 2000
     input_select.bedroom_scene:
       option: Evening
