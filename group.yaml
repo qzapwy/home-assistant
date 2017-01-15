@@ -1,0 +1,66 @@
+#DEFAULT VIEW
+default_view:
+  view: yes
+  entities:
+    - group.people
+    - group.climate
+    
+people:
+  name: People
+  icon: mdi:account-multiple
+  entities:
+    - device_tracker.044bed8cb998
+    - device_tracker.d087e22b8a78
+
+climate:
+  name: Climate
+  entities:
+    - sun.sun
+    - sensor.dark_sky_temperature
+    - sensor.dark_sky_apparent_temperature
+    - sensor.dark_sky_precip_probability
+    - sensor.dark_sky_wind_speed
+
+
+#LIVING ROOM VIEW
+living_room:
+  name: Living Room
+  view: yes
+  entities:
+    - media_player.living_room
+
+
+#BEDROOM VIEW
+bedroom:
+  name: Bedroom  
+  view: yes
+  entities:
+    - group.bedroom_light_control
+    - group.bedroom_lights
+    - group.bedroom_alarm
+bedroom_lights:
+  name: Bedroom Lights
+  entities:
+    - light.bedroom_light_1
+    - light.bedroom_light_2
+bedroom_light_control:
+  name: Light Control
+  entities:
+    - input_boolean.bedroom_light_automation
+    - input_select.bedroom_manual_scene
+    - sensor.bedroom_light_scene
+bedroom_alarm:
+  name: Sunrise Alarm
+  entities:
+    - input_boolean.bedroom_sunrise_alarm
+    - sensor.alarm_time
+    - input_slider.alarmhours
+    - input_slider.alarmminutes 
+
+
+#SPARE ROOM VIEW
+spare_room:
+  name: Spare Room
+  view: yes
+  entities:
+    - media_player.spare_room
