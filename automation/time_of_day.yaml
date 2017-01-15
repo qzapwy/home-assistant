@@ -1,1 +1,54 @@
-
+#SET TIME OF DAY VARIABLE
+#Every 1 minute check what time of the day it is and set a readable variable to use in other lighting automations
+- alias: Set time_of_day to Daylight
+  trigger:
+    platform: time
+    seconds: '/59'
+  condition:
+    condition: time
+    after: '07:00:01'
+    before: '16:00:00
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.time_of_day
+      option: Daylight
+- alias: Set time_of_day to Afternoon 
+  trigger:
+    platform: time
+    seconds: '/59' 
+  condition:
+    condition: time
+    after: '16:00:01'
+    before: '20:00:00'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.time_of_day         
+      option: Afternoon
+- alias: Set time_of_day to Evening 
+  trigger:
+    platform: time
+    seconds: '/59'
+  condition:
+    condition: time
+    after: '20:00:01'
+    before: '23:30:00'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.time_of_day         
+      option: Evening
+- alias: Set time_of_day to Night 
+  trigger:
+    platform: time
+    seconds: '/59'
+  condition:
+    condition: time
+    after: '23:30:01'
+    before: '07:00:00'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.time_of_day         
+      option: Night
