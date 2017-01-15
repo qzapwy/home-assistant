@@ -29,7 +29,7 @@
         entity_id: 'group.bedroom_lights'
         state: 'on'
       - condition: template
-        value_template: '{{ states.input_select.time_of_day != state.input_select.bedroom_scene }}'
+        value_template: '{{ states.input_select.time_of_day != states.input_select.bedroom_scene }}'
   action:
     - service: scene.turn_on
       data_template:
