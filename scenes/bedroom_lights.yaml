@@ -6,12 +6,12 @@
       state: on
       rgb_color: [ 255,197,143 ] 
       brightness: 204
-      transition: '{{ states.input_slider.transition_time.state | int }}'
+      transition: {{ states.input_slider.transition_time.state | int }}
     light.bedroom_light_2:
       state: on
       rgb_color: [ 255,197,143 ]
       brightness: 204
-      transition: '{{ states.input_slider.transition_time.state | int }}'
+      transition: {{ states.input_slider.transition_time.state | int }}
     input_select.bedroom_scene:
       option: Daylight
 #Afternoon - around 2800K
@@ -21,12 +21,12 @@
       state: on
       rgb_color: [ 255,173,94 ]
       brightness: 204
-      transition: '{{ states.input_slider.transition_time.state | int }}'
+      transition: {{ states.input_slider.transition_time.state | int }}
     light.bedroom_light_2:
       state: on
       rgb_color: [ 255,173,94 ]
       brightness: 204
-      transition: '{{ states.input_slider.transition_time.state | int }}'
+      transition: {{ states.input_slider.transition_time.state | int }}
     input_select.bedroom_scene:
       option: Afternoon
 #Evening - around 1900K
@@ -36,12 +36,12 @@
       state: on
       rgb_color: [ 255,131,0 ]
       brightness: 204
-      transition: '{{ states.input_slider.transition_time.state | int }}'
+      transition: {{ states.input_slider.transition_time.state | int }}
     light.bedroom_light_2:
       state: on
       rgb_color: [ 255,131,0 ]
       brightness: 204
-      transition: '{{ states.input_slider.transition_time.state | int }}'
+      transition: {{ states.input_slider.transition_time.state | int }}
     input_select.bedroom_scene:
       option: Evening
 #Night light
@@ -51,12 +51,12 @@
       state: on
       rgb_color: [ 255,83,0 ]
       brightness: 14
-      transition: '{{ states.input_slider.transition_time.state | int }}'
+      transition: {{ states.input_slider.transition_time.state | int }}
     light.bedroom_light_2:
       state: on
       rgb_color: [ 255,83,0 ]
       brightness: 14
-      transition: '{{ states.input_slider.transition_time.state | int }}'
+      transition: {{ states.input_slider.transition_time.state | int }}
     input_select.bedroom_scene:
       option: Night
 #Low blue light
@@ -66,11 +66,11 @@
       state: on
       rgb_color: [ 20,20,50 ]
       brightness: 127
-      transition: '{{ states.input_slider.transition_time.state | int }}'
+      transition: {{ states.input_slider.transition_time.state | int }}
     light.bedroom_light_2:
       state: on
       rgb_color: [ 20,20,50 ]
       brightness: 127
-      transition: '{{ states.input_slider.transition_time.state | int }}'
+      transition: {{ states.input_slider.transition_time.state | int }}
     input_select.bedroom_scene:
       option: Blue
