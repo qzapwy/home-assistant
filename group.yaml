@@ -37,7 +37,7 @@ bedroom:
   entities:
     - group.bedroom_light_control
     - group.bedroom_lights
-    - group.bedroom_alarm
+#    - group.bedroom_alarm
 bedroom_lights:
   name: Bedroom Lights
   entities:
@@ -49,13 +49,13 @@ bedroom_light_control:
     - input_boolean.bedroom_light_automation
     - input_select.bedroom_manual_scene
     - sensor.bedroom_light_scene
-bedroom_alarm:
-  name: Sunrise Alarm
-  entities:
-    - input_boolean.bedroom_sunrise_alarm
-    - sensor.alarm_time
-    - input_slider.alarmhours
-    - input_slider.alarmminutes 
+#bedroom_alarm:
+#  name: Sunrise Alarm
+#  entities:
+#    - input_boolean.bedroom_sunrise_alarm
+#    - sensor.alarm_time
+#    - input_slider.alarmhours
+#    - input_slider.alarmminutes 
 
 
 #SPARE ROOM VIEW
