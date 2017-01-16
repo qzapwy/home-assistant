@@ -70,6 +70,7 @@
           {% else %}
             none
           {% endif %}
+        transition: 10000
     - service: input_select.select_option
       data:
         entity_id: input_select.bedroom_manual_scene
