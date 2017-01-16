@@ -47,8 +47,9 @@ bedroom_light_control:
   name: Light Control
   entities:
     - input_boolean.bedroom_light_automation
-    - input_select.bedroom_manual_scene
     - sensor.bedroom_light_scene
+    - input_select.bedroom_manual_scene
+
 #bedroom_alarm:
 #  name: Sunrise Alarm
 #  entities:
