@@ -27,7 +27,7 @@
       rgb_color: [ 255,173,94 ]
       brightness: 204
       transition: 4000
-      input_select.bedroom_scene:
+    input_select.bedroom_scene:
       option: Afternoon
 #Evening - around 1900K
 - name: bedroom_evening
@@ -42,7 +42,7 @@
       rgb_color: [ 255,131,0 ]
       brightness: 204
       transition: 4000
-      input_select.bedroom_scene:
+    input_select.bedroom_scene:
       option: Evening
 #Night light
 - name: bedroom_night
@@ -57,7 +57,7 @@
       rgb_color: [ 255,83,0 ]
       brightness: 14
       transition: 4000
-      input_select.bedroom_scene:
+    input_select.bedroom_scene:
       option: Night
 #Low blue light
 - name: bedroom_blue
@@ -72,5 +72,5 @@
       rgb_color: [ 20,20,50 ]
       brightness: 127
       transition: 4000
-      input_select.bedroom_scene:
+    input_select.bedroom_scene:
       option: Blue
