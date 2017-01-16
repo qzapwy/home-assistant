@@ -1,45 +1,45 @@
 #BEDROOM LIGHT SCENES
-#Normal
+#Normal daylight - around 3500K
 - name: bedroom_on
   entities:
     light.bedroom_light_1:
       state: on
       rgb_color: [ 255,197,143 ] 
-      brightness: 221
+      brightness: 204
       transition: 3000
     light.bedroom_light_2:
       state: on
       rgb_color: [ 255,197,143 ]
-      brightness: 221
+      brightness: 204
       transition: 3000
     input_select.bedroom_scene:
       option: Daylight
-#Afternoon
+#Afternoon - around 2800K
 - name: bedroom_afternoon
   entities:
     light.bedroom_light_1:
       state: on
-      rgb_color: [ 255,157,63 ]
+      rgb_color: [ 255,173,94 ]
       brightness: 204
       transition: 3000
     light.bedroom_light_2:
       state: on
-      rgb_color: [ 255,157,63 ]
+      rgb_color: [ 255,173,94 ]
       brightness: 204
       transition: 3000
     input_select.bedroom_scene:
       option: Afternoon
-#Evening
+#Evening - around 1900K
 - name: bedroom_evening
   entities:
     light.bedroom_light_1:
       state: on
-      rgb_color: [ 255,126,0 ]
+      rgb_color: [ 255,131,0 ]
       brightness: 204
       transition: 3000
     light.bedroom_light_2:
       state: on
-      rgb_color: [ 255,126,0 ]
+      rgb_color: [ 255,131,0 ]
       brightness: 204
       transition: 3000
     input_select.bedroom_scene:
@@ -50,12 +50,12 @@
     light.bedroom_light_1:
       state: on
       rgb_color: [ 255,83,0 ]
-      brightness: 2
+      brightness: 14
       transition: 3000
     light.bedroom_light_2:
       state: on
       rgb_color: [ 255,83,0 ]
-      brightness: 2
+      brightness: 14
       transition: 3000
     input_select.bedroom_scene:
       option: Night
