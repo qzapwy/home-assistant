@@ -103,12 +103,6 @@ input_slider:
     min: 0
     max: 55
     step: 5
-  transition_time:
-    name: Transition Time
-    initial: 3500
-    min: 0
-    max: 180000
-    step: 1
 
 input_boolean:
 
