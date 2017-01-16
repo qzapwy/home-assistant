@@ -54,6 +54,10 @@
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.bedroom_light_automation
+    - service: input_slider.select_value
+      data_template:
+        entity_id: input_slider.transition_time
+        value: 10000
     - service: scene.turn_on
       data_template:      
         entity_id: >
