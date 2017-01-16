@@ -6,7 +6,7 @@
       state: on
       rgb_color: [ 255,197,143 ] 
       brightness: 204
-      transition: '{{ states.input_slider.transition_time.state | int }}'
+      transition: {{ states.input_slider.transition_time.state | int }}
     light.bedroom_light_2:
       state: on
       rgb_color: [ 255,197,143 ]
