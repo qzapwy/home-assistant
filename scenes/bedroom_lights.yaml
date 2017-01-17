@@ -6,12 +6,12 @@
       state: on
       rgb_color: [ 255,197,143 ] 
       brightness: 204
-      transition: 4000
+      transition: 10000
     light.bedroom_light_2:
       state: on
       rgb_color: [ 255,197,143 ]
       brightness: 204
-      transition: 4000
+      transition: 10000
     input_select.bedroom_scene:
       option: Daylight
 #Afternoon - around 2800K
@@ -50,12 +50,12 @@
     light.bedroom_light_1:
       state: on
       rgb_color: [ 255,83,0 ]
-      brightness: 14
+      brightness: 7
       transition: 4000
     light.bedroom_light_2:
       state: on
       rgb_color: [ 255,83,0 ]
-      brightness: 14
+      brightness: 7
       transition: 4000
     input_select.bedroom_scene:
       option: Night
