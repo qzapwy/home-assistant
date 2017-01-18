@@ -35,13 +35,13 @@
       data_template:
         entity_id: >
           {% if is_state("input_select.time_of_day", "Daylight") %}
-            scene.bedroom_on
+            scene.bedroom_on_auto
           {%-elif is_state("input_select.time_of_day", "Afternoon") %}
-            scene.bedroom_afternoon
+            scene.bedroom_afternoon_auto
           {%-elif is_state("input_select.time_of_day", "Evening") %}
-            scene.bedroom_evening
+            scene.bedroom_evening_auto
           {%-elif is_state("input_select.time_of_day", "Night") %}
-            scene.bedroom_night
+            scene.bedroom_night_auto
           {% else %}
             none
           {% endif %}
