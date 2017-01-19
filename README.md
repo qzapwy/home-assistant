@@ -1,5 +1,5 @@
 # home-assistant
-Configuration files for Home Assistant.
+Configuration files for Home Assistant. https://home-assistant.io/
 
 Devices:
  - Two Yeelight RGB bulbs in one group
