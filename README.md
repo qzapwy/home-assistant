@@ -7,6 +7,6 @@ Devices:
  - Two Chromecasts
  - Climate details from Darksky
  
- Automations
- - The lights are on an automative schedule of different colour temperatures throughout the day.
- - THe schedule can be overridden with manual input via a dropdown box
+Automations:
+ - The lights are on an automatic schedule of different colour temperatures throughout the day.
+ - The schedule can be overridden with manual input via a dropdown box
