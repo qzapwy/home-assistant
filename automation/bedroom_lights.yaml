@@ -1,7 +1,7 @@
 #BEDROOM LIGHT AUTOMATION
 
-#When the lights are off turn all the variables to off
-- alias: when the lights are off set the variable to off
+#When the lights are off turn the scene variable to off
+- alias: Bedroom lights off
   trigger:
     platform: state
     entity_id: group.bedroom_lights
@@ -10,11 +10,10 @@
     - service: input_select.select_option
       data:
         entity_id: input_select.bedroom_scene
-        option: Off
-
-#Every 1 second checks if the automation switch is on and if the lights are on.
-#If they are check if the lights are already what they need to be
-#If they aren't it sets the light scene to something suitable based on the time of day variable
+        option: 'Off'
+        
+#Every 1 second checks if the automation switch is on and if the lights are on and if the lights are not already what they need to be and if the sunrise alarm isn't active
+#If true it sets the light scene to something suitable based on the time of day variable
 - alias: Automatic bedroom light control
   trigger:
     platform: time
@@ -30,6 +29,9 @@
         state: 'on'
       - condition: template
         value_template: '{{ states("input_select.time_of_day") != states("input_select.bedroom_scene") }}'
+      - condition: state
+        entity_id: 'input_boolean.bedroom_sunrise_active'
+        state: 'off'
   action:
     - service: scene.turn_on
       data_template:
@@ -46,7 +48,7 @@
             none
           {% endif %}
 
-#If the user wants to they can use a drop down box in the front end to manually set the light scene and turn off automation
+#If the user wants to they can use a drop down box to manually set the light scene and turn off automation or the sunrise alarm
 - alias: Manual override control for bedroom lights
   trigger:
     platform: state
@@ -54,6 +56,8 @@
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.bedroom_light_automation
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.bedroom_sunrise_active
     - service: scene.turn_on
       data_template:      
         entity_id: >
@@ -74,3 +78,96 @@
       data:
         entity_id: input_select.bedroom_manual_scene
         option: Select a scene
+
+#Every minute check if the time hits the alarm sliders and the alarm toggle is on anthe alarm isn't already active
+#If true start the alarm
+- alias: 'Sunrise alarm'
+  trigger:
+    platform: time
+    minutes: '/1'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.bedroom_sunrise_alarm
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.bedroom_sunrise_active
+        state: 'off'
+      - condition: template
+        value_template: '{{ now().strftime("%-H") | int  == states("input_slider.alarmhours") | int and now().strftime("%-M") | int  == states("input_slider.alarmminutes") | int }}'
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.bedroom_sunrise_active
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.bedroom_light_scene
+        option: Sunrise
+      #runs through 15 scenes that slowly increase in colour temperature
+    - service: scene.turn_on
+      data:      
+        entity_id: scene.sunrise_1
+    - delay: 00:01
+    - service: scene.turn_on
+      data:      
+        entity_id: scene.sunrise_2
+    - delay: 00:01    
+    - service: scene.turn_on
+      data:      
+        entity_id: scene.sunrise_3
+    - delay: 00:01
+    - service: scene.turn_on
+      data:      
+        entity_id: scene.sunrise_4
+    - delay: 00:01
+    - service: scene.turn_on
+      data:      
+        entity_id: scene.sunrise_5
+    - delay: 00:01
+    - service: scene.turn_on
+      data:      
+        entity_id: scene.sunrise_6
+    - delay: 00:01
+    - service: scene.turn_on
+      data:      
+        entity_id: scene.sunrise_7
+    - delay: 00:01
+    - service: scene.turn_on
+      data:      
+        entity_id: scene.sunrise_8
+    - delay: 00:01
+    - service: scene.turn_on
+      data:      
+        entity_id: scene.sunrise_9
+    - delay: 00:01
+    - service: scene.turn_on
+      data:      
+        entity_id: scene.sunrise_10
+    - delay: 00:01
+    - service: scene.turn_on
+      data:      
+        entity_id: scene.sunrise_11
+    - delay: 00:01
+    - service: scene.turn_on
+      data:      
+        entity_id: scene.sunrise_12
+    - delay: 00:01
+    - service: scene.turn_on
+      data:      
+        entity_id: scene.sunrise_13
+    - delay: 00:01
+    - service: scene.turn_on
+      data:      
+        entity_id: scene.sunrise_14
+    - delay: 00:01
+    - service: scene.turn_on
+      data:      
+        entity_id: scene.sunrise_15
+    - delay: 00:01
+    - service: scene.turn_on
+      data:      
+        entity_id: scene.bedroom_on_auto
+      #Allows normal automation to resume
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.bedroom_sunrise_active
+

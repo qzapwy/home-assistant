@@ -1,0 +1,196 @@
+#BEDROOM SUNRISE - 15 scenes to be activate a minute after each other
+
+- name: sunrise_1
+  entities:
+    light.bedroom_light_1:
+      state: on
+      rgb_color: [ 255,83,0 ] 
+      brightness: 2
+      transition: 60000
+    light.bedroom_light_2:
+      state: on
+      rgb_color: [ 255,83,0 ]
+      brightness: 2
+      transition: 60000
+      
+- name: sunrise_2
+  entities:
+    light.bedroom_light_1:
+      state: on
+      rgb_color: [ 255,86,0 ]
+      brightness: 4
+      transition: 60000
+    light.bedroom_light_2:
+      state: on
+      rgb_color: [ 255,86,0 ]
+      brightness: 4
+      transition: 60000
+      
+- name: sunrise_3
+  entities:
+    light.bedroom_light_1:
+      state: on
+      rgb_color: [ 255,90,0 ] 
+      brightness: 7
+      transition: 60000
+    light.bedroom_light_2:
+      state: on
+      rgb_color: [ 255,90,0 ]
+      brightness: 7
+      transition: 60000
+      
+- name: sunrise_4
+  entities:
+    light.bedroom_light_1:
+      state: on
+      rgb_color: [ 255,95,0 ]
+      brightness: 13
+      transition: 60000
+    light.bedroom_light_2:
+      state: on
+      rgb_color: [ 255,95,0 ]
+      brightness: 13
+      transition: 60000
+      
+- name: sunrise_5
+  entities:
+    light.bedroom_light_1:
+      state: on
+      rgb_color: [ 255,101,0 ] 
+      brightness: 22
+      transition: 60000
+    light.bedroom_light_2:
+      state: on
+      rgb_color: [ 255,101,0 ]
+      brightness: 22
+      transition: 60000
+
+- name: sunrise_6
+  entities:
+    light.bedroom_light_1:
+      state: on
+      rgb_color: [ 255,108,2 ]
+      brightness: 34
+      transition: 60000
+    light.bedroom_light_2:
+      state: on
+      rgb_color: [ 255,108,2]
+      brightness: 34
+      transition: 60000
+      
+- name: sunrise_7
+  entities:
+    light.bedroom_light_1:
+      state: on
+      rgb_color: [ 255,116,4 ] 
+      brightness: 49
+      transition: 60000
+    light.bedroom_light_2:
+      state: on
+      rgb_color: [ 255,116,4 ]
+      brightness: 49
+      transition: 60000
+      
+- name: sunrise_8
+  entities:
+    light.bedroom_light_1:
+      state: on
+      rgb_color: [ 255,125,7 ]
+      brightness: 67
+      transition: 60000
+    light.bedroom_light_2:
+      state: on
+      rgb_color: [ 255,125,7 ]
+      brightness: 67
+      transition: 60000
+      
+- name: sunrise_9
+  entities:
+    light.bedroom_light_1:
+      state: on
+      rgb_color: [ 255,135,13 ] 
+      brightness: 88
+      transition: 60000
+    light.bedroom_light_2:
+      state: on
+      rgb_color: [ 255,135,13 ]
+      brightness: 88
+      transition: 60000
+      
+- name: sunrise_10
+  entities:
+    light.bedroom_light_1:
+      state: on
+      rgb_color: [ 255,146,21 ]
+      brightness: 112
+      transition: 60000
+    light.bedroom_light_2:
+      state: on
+      rgb_color: [ 255,146,21 ]
+      brightness: 112
+      transition: 60000
+      
+- name: sunrise_11
+  entities:
+    light.bedroom_light_1:
+      state: on
+      rgb_color: [ 255,158,34 ] 
+      brightness: 139
+      transition: 60000
+    light.bedroom_light_2:
+      state: on
+      rgb_color: [ 255,158,34 ]
+      brightness: 139
+      transition: 60000
+      
+- name: sunrise_12
+  entities:
+    light.bedroom_light_1:
+      state: on
+      rgb_color: [ 255,165,48 ]
+      brightness: 169
+      transition: 60000
+    light.bedroom_light_2:
+      state: on
+      rgb_color: [ 255,165,48 ]
+      brightness: 169
+      transition: 60000
+      
+- name: sunrise_13
+  entities:
+    light.bedroom_light_1:
+      state: on
+      rgb_color: [ 255,171,63 ] 
+      brightness: 202
+      transition: 60000
+    light.bedroom_light_2:
+      state: on
+      rgb_color: [ 255,171,63 ]
+      brightness: 202
+      transition: 60000
+      
+- name: sunrise_14
+  entities:
+    light.bedroom_light_1:
+      state: on
+      rgb_color: [ 255,172,78 ]
+      brightness: 204
+      transition: 60000
+    light.bedroom_light_2:
+      state: on
+      rgb_color: [ 255,172,78 ]
+      brightness: 204
+      transition: 60000     
+      
+- name: sunrise_15
+  entities:
+    light.bedroom_light_1:
+      state: on
+      rgb_color: [ 255,173,94 ]
+      brightness: 204
+      transition: 60000
+    light.bedroom_light_2:
+      state: on
+      rgb_color: [ 255,173,94 ]
+      brightness: 204
+      transition: 60000

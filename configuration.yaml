@@ -41,7 +41,7 @@ device_tracker:
 #Support for Yeelight lights. Assign the lights a fixed IP address with the router first.
 light:
   - platform: yeelight
-    transistion: 2
+    transistion: 1000
     devices:
       192.168.0.50:
         name: Bedroom light 1
@@ -117,6 +117,9 @@ input_boolean:
   bedroom_sunrise_alarm:
     name: Bedroom sunrise alarm
     initial: on
+  bedroom_sunrise_active:
+    name: Sunrise active
+    initial: off
 
 
 input_select:
@@ -148,6 +151,7 @@ input_select:
       - Evening
       - Night
       - Blue
+      - Sunrise
       - Off
     initial: Off
 
