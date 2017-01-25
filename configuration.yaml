@@ -73,7 +73,16 @@ sensor:
     display_options:
       - 'time'
       - 'date'
-  
+
+# DHT22 sensor
+  - platform: dht
+    sensor: DHT22
+    name: Living Room
+    pin: 4
+    monitored_conditions:
+      - temperature
+      - humidity
+
 #ISS Tracking
   - platform: iss
   
