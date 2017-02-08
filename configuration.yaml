@@ -88,9 +88,6 @@ sensor:
     monitored_conditions:
       - temperature
       - humidity
-
-#ISS Tracking
-  - platform: iss
   
   - platform: template
     sensors:
