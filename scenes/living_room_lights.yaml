@@ -1,0 +1,121 @@
+#LIVING ROOM LIGHT SCENES - Quick transition for when the scene is changed manually
+#Normal daylight - around 3500K
+- name: living_room_on
+  entities:
+    light.living_room_light_1:
+      state: on
+      rgb_color: [ 255,197,143 ] 
+      brightness: 204
+      transition: 2000
+    light.living_room_light_2:
+      state: on
+      rgb_color: [ 255,197,143 ]
+      brightness: 204
+      transition: 2000
+    light.living_room_lamp_1:
+      state: on
+      rgb_color: [ 255,197,143 ]
+      brightness: 204
+      transition: 2000
+    input_select.living_room_scene:
+      option: Daylight
+#Afternoon - around 2800K
+- name: living_room_afternoon
+  entities:
+    light.living_room_light_1:
+      state: on
+      rgb_color: [ 255,173,94 ]
+      brightness: 204
+      transition: 2000
+    light.living_room_light_2:
+      state: on
+      rgb_color: [ 255,173,94 ]
+      brightness: 204
+      transition: 2000
+    light.living_room_lamp_1:
+      state: on
+      rgb_color: [ 255,173,94 ]
+      brightness: 204
+      transition: 2000
+    input_select.living_room_scene:
+      option: Afternoon
+#Evening - around 1900K
+- name: living_room_evening
+  entities:
+    light.living_room_light_1:
+      state: on
+      rgb_color: [ 255,131,0 ]
+      brightness: 204
+      transition: 2000
+    light.living_room_light_2:
+      state: on
+      rgb_color: [ 255,131,0 ]
+      brightness: 204
+      transition: 2000
+    light.living_room_lamp_1:
+      state: on
+      rgb_color: [ 255,131,0 ]
+      brightness: 204
+      transition: 2000
+    input_select.living_room_scene:
+      option: Evening
+#Night light
+- name: living_room_night
+  entities:
+    light.living_room_light_1:
+      state: on
+      rgb_color: [ 255,83,0 ]
+      brightness: 7
+      transition: 2000
+    light.living_room_light_2:
+      state: on
+      rgb_color: [ 255,83,0 ]
+      brightness: 7
+      transition: 2000
+    light.living_room_lamp_1:
+      state: on
+      rgb_color: [ 255,83,0 ]
+      brightness: 7
+      transition: 2000
+    input_select.living_room_scene:
+      option: Night
+#Low blue light
+- name: living_room_blue
+  entities:
+    light.living_room_light_1:
+      state: on
+      rgb_color: [ 20,20,50 ]
+      brightness: 127
+      transition: 2000
+    light.living_room_light_2:
+      state: on
+      rgb_color: [ 20,20,50 ]
+      brightness: 127
+      transition: 2000
+    light.living_room_lamp_1:
+      state: on
+      rgb_color: [ 20,20,50 ]
+      brightness: 127
+      transition: 2000
+    input_select.living_room_scene:
+      option: Blue
+#Movie watching light scene
+- name: living_room_movie
+  entities:
+    light.living_room_light_1:
+      state: on
+      rgb_color: [ 20,20,50 ]
+      brightness: 127
+      transition: 2000
+    light.living_room_light_2:
+      state: on
+      rgb_color: [ 20,20,50 ]
+      brightness: 127
+      transition: 2000
+    light.living_room_lamp_1:
+      state: on
+      rgb_color: [ 20,20,50 ]
+      brightness: 127
+      transition: 2000
+    input_select.living_room_scene:
+      option: Movie

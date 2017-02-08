@@ -1,0 +1,111 @@
+#LIVING ROOM LIGHT AUTOMATION
+
+#When the lights are off turn the scene variable to off
+- alias: Living room lights off
+  trigger:
+    platform: state
+    entity_id: group.living_room_lights
+    state: 'off'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.living_room_scene
+        option: 'Off'
+        
+#Every 1 second checks if the automation switch is on and if the lights are on and if the lights are not already what they need to be.
+#If true it sets the light scene to something suitable based on the time of day variable
+- alias: Automatic living room light control
+  trigger:
+    platform: time
+    seconds: '/1'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: 'input_boolean.living_room_light_automation'
+        state: 'on'
+      - condition: state
+        entity_id: 'group.living_room_lights'
+        state: 'on'
+      - condition: template
+        value_template: '{{ states("input_select.time_of_day") != states("input_select.living_room_scene") }}'
+  action:
+    - service: scene.turn_on
+      data_template:
+        entity_id: >
+          {% if is_state("input_select.time_of_day", "Daylight") %}
+            scene.living_room_on_auto
+          {%-elif is_state("input_select.time_of_day", "Afternoon") %}
+            scene.living_room_afternoon_auto
+          {%-elif is_state("input_select.time_of_day", "Evening") %}
+            scene.living_room_evening_auto
+          {%-elif is_state("input_select.time_of_day", "Night") %}
+            scene.living_room_night_auto
+          {% else %}
+            none
+          {% endif %}
+          
+#Every 1 second checks if the automation switch is on and if the lights are on and if the lights are not already what they need to be.
+#If true it sets the light scene to something suitable based on the time of day variable
+- alias: Automatic living room lamp control
+  trigger:
+    platform: time
+    seconds: '/1'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: 'input_boolean.living_room_light_automation'
+        state: 'on'
+      - condition: state
+        entity_id: 'group.living_room_lamp'
+        state: 'on'
+      - condition: template
+        value_template: '{{ states("input_select.time_of_day") != states("input_select.living_room_scene") }}'
+  action:
+    - service: scene.turn_on
+      data_template:
+        entity_id: >
+          {% if is_state("input_select.time_of_day", "Daylight") %}
+            scene.living_room_lamp_on_auto
+          {%-elif is_state("input_select.time_of_day", "Afternoon") %}
+            scene.living_room_lamp_afternoon_auto
+          {%-elif is_state("input_select.time_of_day", "Evening") %}
+            scene.living_room_lamp_evening_auto
+          {%-elif is_state("input_select.time_of_day", "Night") %}
+            scene.living_room_lamp_night_auto
+          {% else %}
+            none
+          {% endif %}
+          #
+          
+#If the user wants to they can use a drop down box to manually set the light scene and turn off automation or the sunrise alarm
+- alias: Manual override control for living room lights
+  trigger:
+    platform: state
+    entity_id: input_select.living_room_manual_scene
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.living_room_light_automation
+    - service: scene.turn_on
+      data_template:      
+        entity_id: >
+          {% if is_state("input_select.living_room_manual_scene", "Daylight") %}
+            scene.living_room_on
+          {%-elif is_state("input_select.living_room_manual_scene", "Afternoon") %}
+            scene.living_room_afternoon
+          {%-elif is_state("input_select.living_room_manual_scene", "Evening") %}
+            scene.living_room_evening
+          {%-elif is_state("input_select.living_room_manual_scene", "Night") %}
+            scene.living_room_night
+          {%-elif is_state("input_select.living_room_manual_scene", "Blue") %}
+            scene.living_room_blue
+          {%-elif is_state("input_select.living_room_manual_scene", "Movie") %}
+            scene.living_room_movie
+          {% else %}
+            none
+          {% endif %}
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.living_room_manual_scene
+        option: Select a scene

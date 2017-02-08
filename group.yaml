@@ -36,8 +36,25 @@ living_room:
   entities:
     - media_player.living_room
     - group.temp
-
-
+    - group.living_room_lights
+    - group.living_room_lamp
+    - group.living_room_light_control
+living_room_lights:
+  name: Living Room Lights
+  entities:
+    - light.living_room_light_1
+    - light.living_room_light_2
+living_room_lamp:
+  name: Lamp
+  entities:
+    - light.living_room_lamp
+living_room_light_control:
+  name: Light Control
+  entities:
+    - input_boolean.living_room_light_automation
+    - sensor.living_room_light_scene
+    - input_select.living_room_manual_scene
+    
 #BEDROOM VIEW
 bedroom:
   name: Bedroom  

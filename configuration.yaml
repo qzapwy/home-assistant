@@ -41,12 +41,18 @@ device_tracker:
 #Support for Yeelight lights. Assign the lights a fixed IP address with the router first.
 light:
   - platform: yeelight
-    transistion: 1000
+    transistion: 2000
     devices:
       192.168.0.50:
         name: Bedroom light 1
       192.168.0.51:
         name: Bedroom light 2
+      192.168.0.52:
+        name: Living room light 1
+      192.168.0.53:
+        name: Living room light 2
+      192.168.0.54:
+        name: Living room lamp
 
 scene: !include_dir_merge_list scenes/
 
@@ -97,6 +103,9 @@ sensor:
       bedroom_light_scene:
         friendly_name: 'Current Light Scene'
         value_template: '{{states("input_select.bedroom_scene") }}'
+      living_room_light_scene:
+        friendly_name: 'Current Light Scene'
+        value_template: '{{states("input_select.living_room_scene") }}'
 
 input_slider:
 
@@ -129,7 +138,11 @@ input_boolean:
   bedroom_sunrise_active:
     name: Sunrise active
     initial: off
-
+#Living room light variables
+  living_room_light_automation:
+    name: Automation toggle
+    initial: on
+    icon: mdi:brightness-auto
 
 input_select:
 
@@ -160,6 +173,31 @@ input_select:
       - Evening
       - Night
       - Blue
+      - Sunrise
+      - Off
+    initial: Off
+
+#Living room light automation variables
+  living_room_manual_scene:
+    name: Manual Light Scene
+    options:
+      - Daylight
+      - Afternoon
+      - Evening
+      - Night
+      - Movie
+      - Blue
+      - Select a scene
+    initial: Select a scene
+  living_room_scene:
+    name: Living Room Light Scene
+    options:
+      - Daylight
+      - Afternoon
+      - Evening
+      - Night
+      - Blue
+      - Movie
       - Sunrise
       - Off
     initial: Off

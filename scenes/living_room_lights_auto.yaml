@@ -1,0 +1,61 @@
+#LIVING ROOM LIGHT SCENES - Slow transition for when the scene is changed automatically
+#Normal daylight - around 3500K
+- name: living_room_on_auto
+  entities:
+    light.living_room_light_1:
+      state: on
+      rgb_color: [ 255,197,143 ] 
+      brightness: 204
+      transition: 180000
+    light.living_room_light_2:
+      state: on
+      rgb_color: [ 255,197,143 ]
+      brightness: 204
+      transition: 180000
+    input_select.living_room_scene:
+      option: Daylight
+#Afternoon - around 2800K
+- name: living_room_afternoon_auto
+  entities:
+    light.living_room_light_1:
+      state: on
+      rgb_color: [ 255,173,94 ]
+      brightness: 204
+      transition: 180000
+    light.living_room_light_2:
+      state: on
+      rgb_color: [ 255,173,94 ]
+      brightness: 204
+      transition: 180000
+    input_select.living_room_scene:
+      option: Afternoon
+#Evening - around 1900K
+- name: living_room_evening_auto
+  entities:
+    light.living_room_light_1:
+      state: on
+      rgb_color: [ 255,131,0 ]
+      brightness: 204
+      transition: 180000
+    light.living_room_light_2:
+      state: on
+      rgb_color: [ 255,131,0 ]
+      brightness: 204
+      transition: 180000
+    input_select.living_room_scene:
+      option: Evening
+#Night light
+- name: living_room_night_auto
+  entities:
+    light.living_room_light_1:
+      state: on
+      rgb_color: [ 255,83,0 ]
+      brightness: 7
+      transition: 180000
+    light.living_room_light_2:
+      state: on
+      rgb_color: [ 255,83,0 ]
+      brightness: 7
+      transition: 180000
+    input_select.living_room_scene:
+      option: Night
