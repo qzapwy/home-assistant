@@ -33,10 +33,10 @@ panel_iframe:
     icon: mdi:access-point-network
     url: 'http://192.168.0.1'
 
-#NMAP device tracking on the local network
+#Device tracking on the local network
 device_tracker:
-  - platform: nmap_tracker
-    hosts: 192.168.0.1/24
+  - platform: sky_hub
+    host: 192.168.0.1
 
 #Support for Yeelight lights. Assign the lights a fixed IP address with the router first.
 light:
@@ -52,7 +52,7 @@ light:
       192.168.0.53:
         name: Living room light 2
       192.168.0.54:
-        name: Living room lamp
+        name: Living room lamp 1
 
 scene: !include_dir_merge_list scenes/
 

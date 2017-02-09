@@ -47,7 +47,7 @@ living_room_lights:
 living_room_lamp:
   name: Lamp
   entities:
-    - light.living_room_lamp
+    - light.living_room_lamp_1
 living_room_light_control:
   name: Light Control
   entities:

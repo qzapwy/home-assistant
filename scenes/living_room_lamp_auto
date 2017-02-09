@@ -4,7 +4,7 @@
   entities:
     light.living_room_lamp_1:
       state: on
-      rgb_color: [ 255,197,143 ]
+      rgb_color: [ 255,173,94 ]
       brightness: 204
       transition: 180000
     input_select.living_room_scene:
@@ -14,8 +14,8 @@
   entities:
     light.living_room_lamp_1:
       state: on
-      rgb_color: [ 255,173,94 ]
-      brightness: 204
+      rgb_color: [ 255,131,0 ]
+      brightness: 184
       transition: 180000
     input_select.living_room_scene:
       option: Afternoon
@@ -24,8 +24,8 @@
   entities:
     light.living_room_lamp_1:
       state: on
-      rgb_color: [ 255,131,0 ]
-      brightness: 204
+      rgb_color: [ 255,83,0 ]
+      brightness: 150
       transition: 180000
     input_select.living_room_scene:
       option: Evening
