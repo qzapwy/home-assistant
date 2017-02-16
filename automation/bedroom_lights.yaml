@@ -1,61 +1,13 @@
 #BEDROOM LIGHT AUTOMATION
 
-#When the lights are off turn the scene variable to off
-- alias: Bedroom lights off
-  trigger:
-    platform: state
-    entity_id: group.bedroom_lights
-    state: 'off'
-  action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.bedroom_scene
-        option: 'Off'
-        
-#Every 1 second checks if the automation switch is on and if the lights are on and if the lights are not already what they need to be and if the sunrise alarm isn't active
-#If true it sets the light scene to something suitable based on the time of day variable
-- alias: Automatic bedroom light control
-  trigger:
-    platform: time
-    seconds: '/1'
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: 'input_boolean.bedroom_light_automation'
-        state: 'on'
-      - condition: state
-        entity_id: 'group.bedroom_lights'
-        state: 'on'
-      - condition: template
-        value_template: '{{ states("input_select.time_of_day") != states("input_select.bedroom_scene") }}'
-      - condition: state
-        entity_id: 'input_boolean.bedroom_sunrise_active'
-        state: 'off'
-  action:
-    - service: scene.turn_on
-      data_template:
-        entity_id: >
-          {% if is_state("input_select.time_of_day", "Daylight") %}
-            scene.bedroom_on_auto
-          {%-elif is_state("input_select.time_of_day", "Afternoon") %}
-            scene.bedroom_afternoon_auto
-          {%-elif is_state("input_select.time_of_day", "Evening") %}
-            scene.bedroom_evening_auto
-          {%-elif is_state("input_select.time_of_day", "Night") %}
-            scene.bedroom_night_auto
-          {% else %}
-            none
-          {% endif %}
-
-#If the user wants to they can use a drop down box to manually set the light scene and turn off automation or the sunrise alarm
+#If the user wants to they can use a drop down box to manually set the light scene and turn off flux automation or the sunrise alarm
 - alias: Manual override control for bedroom lights
   trigger:
     platform: state
     entity_id: input_select.bedroom_manual_scene
   action:
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.bedroom_light_automation
+    - service: switch.turn_off
+      entity_id: switch.light_automation
     - service: input_boolean.turn_off
       entity_id: input_boolean.bedroom_sunrise_active
     - service: scene.turn_on
@@ -63,8 +15,6 @@
         entity_id: >
           {% if is_state("input_select.bedroom_manual_scene", "Daylight") %}
             scene.bedroom_on
-          {%-elif is_state("input_select.bedroom_manual_scene", "Afternoon") %}
-            scene.bedroom_afternoon
           {%-elif is_state("input_select.bedroom_manual_scene", "Evening") %}
             scene.bedroom_evening
           {%-elif is_state("input_select.bedroom_manual_scene", "Night") %}
@@ -99,6 +49,8 @@
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.bedroom_sunrise_active
+    - service: switch.turn_off
+      entity_id: switch.light_automation
     - service: input_select.select_option
       data:
         entity_id: input_select.bedroom_light_scene
@@ -170,4 +122,6 @@
       #Allows normal automation to resume
     - service: input_boolean.turn_off
       entity_id: input_boolean.bedroom_sunrise_active
+    - service: switch.turn_on
+      entity_id: switch.light_automation
 

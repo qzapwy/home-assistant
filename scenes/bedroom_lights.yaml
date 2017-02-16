@@ -28,7 +28,7 @@
       brightness: 204
       transition: 2000
     input_select.bedroom_scene:
-      option: Afternoon
+      option: Early evening
 #Evening - around 1900K
 - name: bedroom_evening
   entities:

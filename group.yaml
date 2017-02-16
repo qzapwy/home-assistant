@@ -51,7 +51,7 @@ living_room_lamp:
 living_room_light_control:
   name: Light Control
   entities:
-    - input_boolean.living_room_light_automation
+    - switch.light_automation
     - sensor.living_room_light_scene
     - input_select.living_room_manual_scene
     
@@ -71,7 +71,7 @@ bedroom_lights:
 bedroom_light_control:
   name: Light Control
   entities:
-    - input_boolean.bedroom_light_automation
+    - switch.light_automation
     - sensor.bedroom_light_scene
     - input_select.bedroom_manual_scene
 bedroom_alarm:

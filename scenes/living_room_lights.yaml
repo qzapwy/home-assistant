@@ -38,7 +38,7 @@
       brightness: 204
       transition: 2000
     input_select.living_room_scene:
-      option: Afternoon
+      option: Early evening
 #Evening - around 1900K
 - name: living_room_evening
   entities:
