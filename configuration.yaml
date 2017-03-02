@@ -8,6 +8,8 @@ homeassistant:
 
 updater:
 
+config:
+
 discovery:
 
 conversation:
@@ -69,13 +71,19 @@ switch:
     - light.living_room_lamp_1
   name: Light Automation
   start_time: '7:30'
-  stop_time: '23:00'
+  stop_time: '23:30'
   start_colortemp: 4000
   sunset_colortemp: 3000
-  stop_colortemp: 1900
-  brightness: 204
+  stop_colortemp: 1700
+  brightness: 220
   disable_brightness_adjust: False
   mode: mired
+
+#Emulate a Phillips Hue bridge to allow Google Home to control Home Assistant
+emulated_hue:
+  type: google_home
+  # Google Home does not work on different ports.
+  listen_port: 80
 
 scene: !include_dir_merge_list scenes/
 
@@ -126,6 +134,9 @@ sensor:
       living_room_light_scene:
         friendly_name: 'Current Light Scene'
         value_template: '{{states("input_select.living_room_scene") }}'
+   
+  - platform: moon
+
 
 input_slider:
 

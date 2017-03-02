@@ -2,7 +2,6 @@
 default_view:
   view: yes
   entities:
-    - sensor.time
     - group.people
     - group.climate
     - group.temp
@@ -18,6 +17,7 @@ climate:
   name: Climate Outside
   entities:
     - sun.sun
+    - sensor.moon
     - sensor.dark_sky_temperature
     - sensor.dark_sky_apparent_temperature
     - sensor.dark_sky_precip_probability
