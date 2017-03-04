@@ -16,6 +16,9 @@ conversation:
 
 history:
 
+recorder:
+  purge_days: 5
+
 logbook:
 
 sun:
