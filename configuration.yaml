@@ -73,7 +73,8 @@ switch:
   start_time: '7:30'
   stop_time: '23:30'
   start_colortemp: 4000
-  sunset_colortemp: 3000
+  sunset_colortemp: 3200
+
   stop_colortemp: 1700
   brightness: 220
   disable_brightness_adjust: False
