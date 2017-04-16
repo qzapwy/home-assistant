@@ -1,0 +1,10 @@
+# Icons for TfL sensors
+sensor.381:
+  icon: mdi:bus
+sensor.jubilee_line:
+  icon: mdi:train
+sensor.rb4:
+  icon: mdi:ferry
+# Humidity icon
+sensor.living_room_humidity:
+  icon: mdi:cloud-outline

@@ -5,6 +5,7 @@ default_view:
     - group.people
     - group.climate
     - group.temp
+    - group.transport
     
 people:
   name: People
@@ -28,6 +29,14 @@ temp:
   entities:
     - sensor.living_room_humidity
     - sensor.living_room_temperature
+    - sensor.living_room_light_level
+
+transport:
+  name: Transport
+  entities:
+    - sensor.jubilee_line
+    - sensor.rb4
+    - sensor.381
 
 #LIVING ROOM VIEW
 living_room:

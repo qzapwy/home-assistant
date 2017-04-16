@@ -5,6 +5,7 @@ homeassistant:
   elevation: 20
   unit_system: metric
   time_zone: Europe/London
+  customize: !include customize.yaml
 
 updater:
 
@@ -15,6 +16,9 @@ discovery:
 conversation:
 
 history:
+
+ifttt:
+  key: crD0X_VS9lRg6MhhKoabrOT9srBY_3CPfFPbCgbEnEw
 
 recorder:
   purge_days: 5
@@ -135,11 +139,41 @@ sensor:
       bedroom_light_scene:
         friendly_name: 'Current Light Scene'
         value_template: '{{states("input_select.bedroom_scene") }}'
+        icon_template: mdi:lamp
       living_room_light_scene:
         friendly_name: 'Current Light Scene'
         value_template: '{{states("input_select.living_room_scene") }}'
+        icon_template: mdi:lamp
    
   - platform: moon
+
+#TfL data
+  - platform: rest
+    resource: https://api.tfl.gov.uk/Line/jubilee/Status
+    name: Jubilee Line
+    value_template: '{{value_json[0].lineStatuses[0].statusSeverityDescription}}'
+  - platform: rest
+    resource: https://api.tfl.gov.uk/Line/jubilee/Status
+    name: Jubilee Line status
+    value_template: '{{value_json[0].lineStatuses[0].reason}}'
+    
+  - platform: rest
+    resource: https://api.tfl.gov.uk/Line/rb4/Status
+    name: RB4
+    value_template: '{{value_json[0].lineStatuses[0].statusSeverityDescription}}'
+  - platform: rest
+    resource: https://api.tfl.gov.uk/Line/rb4/Status
+    name: RB4 status
+    value_template: '{{value_json[0].lineStatuses[0].reason}}'
+    
+  - platform: rest
+    resource: https://api.tfl.gov.uk/Line/381/Status
+    name: 381
+    value_template: '{{value_json[0].lineStatuses[0].statusSeverityDescription}}'
+  - platform: rest
+    resource: https://api.tfl.gov.uk/Line/381/Status
+    name: 381 status
+    value_template: '{{value_json[0].lineStatuses[0].reason}}'
 
 
 input_slider:
