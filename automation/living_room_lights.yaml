@@ -1,7 +1,7 @@
 #LIVING ROOM LIGHT SETTING
 
 #If the user wants to they can use a drop down box to manually set the light scene and turn off automation or the sunrise alarm
-- alias: Manual override control for living room lights and the living room lamp
+- alias: Manual override control for living room lights and lamp and the kitchen light.
   trigger:
     platform: state
     entity_id: input_select.living_room_manual_scene

@@ -66,6 +66,9 @@ light:
       192.168.0.54:
         name: Living room lamp 1
         transition: 2000
+      192.168.0.55:
+        name: Kitchen light 1
+        transition: 2000
 
 #F.lux light component
 switch:
@@ -76,13 +79,13 @@ switch:
     - light.living_room_light_1
     - light.living_room_light_2
     - light.living_room_lamp_1
+    - light.kitchen_light_1
   name: Light Automation
   start_time: '7:30'
   stop_time: '23:30'
   start_colortemp: 4000
-  sunset_colortemp: 3200
-
-  stop_colortemp: 1700
+  sunset_colortemp: 3300
+  stop_colortemp: 1800
   brightness: 220
   disable_brightness_adjust: False
   mode: mired

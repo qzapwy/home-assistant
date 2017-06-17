@@ -17,6 +17,11 @@
       rgb_color: [ 255,197,143 ]
       brightness: 204
       transition: 2000
+    light.kitchen_light_1:
+      state: on
+      rgb_color: [ 255,197,143 ]
+      brightness: 204
+      transition: 2000
     input_select.living_room_scene:
       option: Daylight
 #Afternoon - around 2800K
@@ -33,6 +38,11 @@
       brightness: 204
       transition: 2000
     light.living_room_lamp_1:
+      state: on
+      rgb_color: [ 255,173,94 ]
+      brightness: 204
+      transition: 2000
+    light.kitchen_light_1:
       state: on
       rgb_color: [ 255,173,94 ]
       brightness: 204
@@ -57,6 +67,11 @@
       rgb_color: [ 255,131,0 ]
       brightness: 204
       transition: 2000
+    light.kitchen_light_1:
+      state: on
+      rgb_color: [ 255,131,0 ]
+      brightness: 204
+      transition: 2000
     input_select.living_room_scene:
       option: Evening
 #Night light
@@ -73,6 +88,11 @@
       brightness: 7
       transition: 2000
     light.living_room_lamp_1:
+      state: on
+      rgb_color: [ 255,83,0 ]
+      brightness: 7
+      transition: 2000
+    light.kitchen_light_1:
       state: on
       rgb_color: [ 255,83,0 ]
       brightness: 7
@@ -97,6 +117,11 @@
       rgb_color: [ 20,20,50 ]
       brightness: 127
       transition: 2000
+    light.kitchen_light_1:
+      state: on
+      rgb_color: [ 20,20,50 ]
+      brightness: 127
+      transition: 2000
     input_select.living_room_scene:
       option: Blue
 #Movie watching light scene
@@ -116,6 +141,11 @@
       state: on
       rgb_color: [ 20,20,50 ]
       brightness: 127
+      transition: 2000
+    light.kitchen_light_1:
+      state: on
+      rgb_color: [ 255,83,0 ]
+      brightness: 15
       transition: 2000
     input_select.living_room_scene:
       option: Movie

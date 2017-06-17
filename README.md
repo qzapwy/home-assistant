@@ -3,7 +3,7 @@
 Configuration files for Home Assistant. https://home-assistant.io/
 
 Devices and Sensors:
- - Five Yeelight RGB bulbs in three groups
+ - Six Yeelight RGB bulbs in four groups
  - Presence dection for two people
  - DHT22 sensor for internal temperature and humidity
  - Two Chromecasts
