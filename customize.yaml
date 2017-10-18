@@ -8,3 +8,6 @@ sensor.rb4:
 # Humidity icon
 sensor.living_room_humidity:
   icon: mdi:cloud-outline
+# Southwark pollution levels
+sensor.southwark:
+  friendly_name: Pollution Level

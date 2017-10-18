@@ -45,7 +45,7 @@
         entity_id: input_boolean.bedroom_sunrise_active
         state: 'off'
       - condition: template
-        value_template: '{{ now().strftime("%-H") | int  == states("input_slider.alarmhours") | int and now().strftime("%-M") | int  == states("input_slider.alarmminutes") | int }}'
+        value_template: '{{ now().strftime("%-H") | int  == states("input_number.alarmhours") | int and now().strftime("%-M") | int  == states("input_number.alarmminutes") | int }}'
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.bedroom_sunrise_active
