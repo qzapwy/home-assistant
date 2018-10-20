@@ -12,7 +12,7 @@ people:
   icon: mdi:account-multiple
   entities:
     - device_tracker.044bed8cb998
-    - device_tracker.android30f58fd64ae385c6
+    - device_tracker.adrian_phone
 
 climate:
   name: Climate Outside
