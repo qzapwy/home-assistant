@@ -1,7 +1,7 @@
 #BEDROOM LIGHT AUTOMATION
-
 #If the user wants to they can use a drop down box to manually set the light scene and turn off flux automation or the sunrise alarm
-- alias: Manual override control for bedroom lights
+- id: bedroom_light
+  alias: Manual override control for bedroom lights
   trigger:
     platform: state
     entity_id: input_select.bedroom_manual_scene
@@ -31,7 +31,8 @@
 
 #Every minute check if the time hits the alarm sliders and the alarm toggle is on anthe alarm isn't already active
 #If true start the alarm
-- alias: 'Sunrise alarm'
+- id: sunrise_alarm
+  alias: 'Sunrise alarm'
   trigger:
     platform: time
     minutes: '/1'
@@ -125,3 +126,49 @@
     - service: switch.turn_on
       entity_id: switch.light_automation
 
+#LIVING ROOM LIGHT SETTING
+#If the user wants to they can use a drop down box to manually set the light scene and turn off automation or the sunrise alarm
+- id: living_room_light
+  alias: Manual override control for living room lights and lamp and the kitchen light.
+  trigger:
+    platform: state
+    entity_id: input_select.living_room_manual_scene
+  action:
+    - service: switch.turn_off
+      entity_id: switch.light_automation
+    - service: scene.turn_on
+      data_template:      
+        entity_id: >
+          {% if is_state("input_select.living_room_manual_scene", "Daylight") %}
+            scene.living_room_on
+          {%-elif is_state("input_select.living_room_manual_scene", "Evening") %}
+            scene.living_room_evening
+          {%-elif is_state("input_select.living_room_manual_scene", "Night") %}
+            scene.living_room_night
+          {%-elif is_state("input_select.living_room_manual_scene", "Blue") %}
+            scene.living_room_blue
+          {%-elif is_state("input_select.living_room_manual_scene", "Movie") %}
+            scene.living_room_movie
+          {% else %}
+            none
+          {% endif %}
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.living_room_manual_scene
+        option: Select a scene
+      
+- id: flux
+  alias: If Flux is on set the display variable to automatic
+  trigger:
+    platform: state
+    entity_id: switch.light_automation
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.bedroom_scene
+        option: Automatic
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.living_room_scene
+        option: Automatic      
+      

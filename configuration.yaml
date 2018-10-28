@@ -17,14 +17,15 @@ conversation:
 
 history:
 
-ifttt:
-  key: crD0X_VS9lRg6MhhKoabrOT9srBY_3CPfFPbCgbEnEw
-
 recorder:
   purge_interval: 1
-  purge_keep_days: 5
+  purge_keep_days: 14
 
 logbook:
+
+map:
+
+script: !include scripts.yaml
 
 sun:
 
@@ -34,7 +35,7 @@ tts:
 frontend:
 
 #Frontend layout
-group: !include group.yaml
+group: !include groups.yaml
 
 #Extra iFrame tab in the Frontend for router settings
 panel_iframe:
@@ -88,8 +89,8 @@ switch:
     - light.living_room_lamp_1
     - light.kitchen_light_1
   name: Light Automation
-  start_time: '7:30'
-  stop_time: '23:30'
+  start_time: '7:00'
+  stop_time: '23:00'
   start_colortemp: 4000
   sunset_colortemp: 3400
   stop_colortemp: 1900
@@ -97,15 +98,9 @@ switch:
   disable_brightness_adjust: False
   mode: mired
 
-#Emulate a Phillips Hue bridge to allow Google Home to control Home Assistant
-emulated_hue:
-  type: google_home
-  # Google Home does not work on different ports.
-  listen_port: 80
-
 scene: !include_dir_merge_list scenes/
 
-automation: !include_dir_merge_list automation/
+automation: !include automations.yaml
 
 sensor:
 #Weather from Darksky
@@ -218,6 +213,10 @@ input_boolean:
   bedroom_sunrise_alarm:
     name: Bedroom sunrise alarm
     initial: on
+  bedroom_sunrise_alarm_weekday_toggle:
+    name: Weekdays only
+    initial: on
+    icon: mdi:calendar
   bedroom_sunrise_active:
     name: Sunrise active
     initial: off

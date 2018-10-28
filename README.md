@@ -6,8 +6,8 @@ Devices and Sensors:
  - Six Yeelight RGB bulbs in four groups
  - Presence dection for two people
  - DHT22 sensor for internal temperature and humidity
- - Two Chromecasts
- - Climate details from Darksky
+ - Two Chromecasts, one Google Home Mini
+ - Climate details from Dark Sky
  - Status of TfL services
  
 Automations:
