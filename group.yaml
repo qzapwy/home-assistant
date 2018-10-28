@@ -11,7 +11,7 @@ people:
   name: People
   icon: mdi:account-multiple
   entities:
-    - device_tracker.044bed8cb998
+    - device_tracker.iphone
     - device_tracker.adrian_phone
 
 climate:
