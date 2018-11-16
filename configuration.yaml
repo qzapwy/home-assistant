@@ -249,6 +249,24 @@ input_select:
       - Sunrise
       - Automatic
     initial: Automatic
+    
+#Presence detection variables
+  adrian_status_dropdown
+    name: Adrian
+    options:
+      - Home
+      - Just Arrived
+      - Just Left
+      - Away
+      - Extended Away
+   sophie_status_dropdown
+    name: Sophie
+    options:
+      - Home
+      - Just Arrived
+      - Just Left
+      - Away
+      - Extended Away
 
 #Living room light automation variables
   living_room_manual_scene:
