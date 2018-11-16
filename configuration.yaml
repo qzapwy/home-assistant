@@ -90,6 +90,7 @@ switch:
     - light.kitchen_light_1
   name: Light Automation
   start_time: '7:00'
+  sunset_time: '21:00'
   stop_time: '23:00'
   start_colortemp: 4000
   sunset_colortemp: 3400
