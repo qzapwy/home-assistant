@@ -5,13 +5,16 @@ sensor.jubilee_line:
   icon: mdi:train
 sensor.rb4:
   icon: mdi:ferry
+  
 # Humidity icon
 sensor.living_room_humidity:
   icon: mdi:cloud-outline
+  
 # Southwark pollution levels
 sensor.southwark:
   friendly_name: Pollution Level
-#Rename Dark SKy sensors
+  
+#Rename Dark Sky sensors
 sensor.dark_sky_apparent_temperature:
   friendly_name: Apparent Temperature
 sensor.dark_sky_cloud_coverage:
@@ -28,3 +31,9 @@ sensor.dark_sky_wind_bearing:
   friendly_name: Wind Bearing
 sensor.dark_sky_wind_speed:
   friendly_name: Wind Speed
+  
+#People icons
+sensor.adrian_sensor
+  icon: mdi:account
+sensor.sophie_sensor
+  icon: mdi:account
