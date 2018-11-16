@@ -119,6 +119,7 @@ sensor:
       - cloud_cover
       - hourly_summary
       - daily_summary
+      
 #Time and date variables
   - platform: time_date
     display_options:
@@ -150,7 +151,14 @@ sensor:
         friendly_name: 'Current Light Scene'
         value_template: '{{states("input_select.living_room_scene") }}'
         icon_template: mdi:lamp
-   
+      adrian_status:
+        value_template: '{{ states.input_select.adrian_status_dropdown.state }}'
+        friendly_name: 'Adrian'
+      sophie_status:
+        value_template: '{{ states.input_select.helen_status_dropdown.state }}'
+        friendly_name: 'Sophie'
+
+#moon phases        
   - platform: moon
 
 #TfL data
