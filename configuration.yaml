@@ -236,7 +236,7 @@ input_boolean:
     icon: mdi:brightness-auto
 
 input_select:
-    
+
 #Bedroom light automation variables
   bedroom_manual_scene:
     name: Manual Light Scene
@@ -257,7 +257,7 @@ input_select:
       - Sunrise
       - Automatic
     initial: Automatic
-    
+
 #Presence detection variables
   adrian_status_dropdown:
     name: Adrian
