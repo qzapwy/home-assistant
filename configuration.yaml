@@ -34,9 +34,6 @@ sun:
 tts:
   platform: google
 
-#Frontend layout
-group: !include groups.yaml
-
 #Extra iFrame tab in the Frontend for router settings
 panel_iframe:
   router:
@@ -98,10 +95,6 @@ switch:
   brightness: 220
   disable_brightness_adjust: False
   mode: mired
-
-scene: !include_dir_merge_list scenes/
-
-automation: !include automations.yaml
 
 sensor:
 #Weather from Darksky
@@ -193,7 +186,6 @@ sensor:
   - platform: london_air
     locations:
       - Southwark
-
 
 input_number:
 #Sunrise alarm clock variables
@@ -297,3 +289,9 @@ input_select:
       - Blue
       - Automatic
     initial: Automatic
+
+scene: !include_dir_merge_list scenes/
+
+automation: !include automations.yaml
+
+group: !include groups.yaml
