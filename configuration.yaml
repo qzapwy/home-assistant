@@ -148,7 +148,7 @@ sensor:
         value_template: '{{ states.input_select.adrian_status_dropdown.state }}'
         friendly_name: 'Adrian'
       sophie_status:
-        value_template: '{{ states.input_select.helen_status_dropdown.state }}'
+        value_template: '{{ states.input_select.sophie_status_dropdown.state }}'
         friendly_name: 'Sophie'
 
 #moon phases        
