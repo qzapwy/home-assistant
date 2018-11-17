@@ -259,6 +259,7 @@ input_select:
       - Just Left
       - Away
       - Extended Away
+    initial: Away
   sophie_status_dropdown:
     name: Sophie
     options:
@@ -267,6 +268,7 @@ input_select:
       - Just Left
       - Away
       - Extended Away
+    initial: Away
 
 #Living room light automation variables
   living_room_manual_scene:
