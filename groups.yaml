@@ -10,7 +10,6 @@ default_view:
     
 people:
   name: People
-  icon: mdi:account-multiple
   entities:
     - sensor.adrian_status
     - sensor.sophie_status
