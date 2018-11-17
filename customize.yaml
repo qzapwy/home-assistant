@@ -33,7 +33,7 @@ sensor.dark_sky_wind_speed:
   friendly_name: Wind Speed
 
 #People icons
-sensor.adrian_sensor
+sensor.adrian_sensor:
   icon: mdi:account
-sensor.sophie_sensor
+sensor.sophie_sensor:
   icon: mdi:account
