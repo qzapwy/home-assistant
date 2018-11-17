@@ -32,12 +32,7 @@ sun:
 tts:
   platform: google
 
-
-
-
 frontend:
-
-
 
 #Frontend layout
 group: !include groups.yaml
