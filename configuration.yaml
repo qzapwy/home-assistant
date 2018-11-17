@@ -9,6 +9,8 @@ homeassistant:
 
 updater:
 
+frontend:
+
 config:
 
 discovery:
@@ -31,8 +33,6 @@ sun:
 
 tts:
   platform: google
-
-frontend:
 
 #Frontend layout
 group: !include groups.yaml
