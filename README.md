@@ -11,6 +11,6 @@ Devices and Sensors:
  - Status of TfL services
  
 Automations:
- - The lights' colour temperatures are controled automatically via the Flux component
+ - The lights' colour temperatures are controled automatically via the Flux component, which is modified to have a manual sunset time.
  - The schedule can be overridden with manual input via a dropdown box
  - A sunrise-style alarm clock can be toggled and set to come on at a user-defined time
